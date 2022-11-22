@@ -66,6 +66,5 @@ def vote(request, question_id):
         return render(request, "polls/detail.html", {"question": question, "error_message": "You did not select a choice."})
     else:
         selected_choice.update(votes=F("votes") + 1)
-        selected_choice.refresh_from_db()
         return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
 
